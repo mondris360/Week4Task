@@ -1,4 +1,4 @@
-package model;
+package model.abtractclass;
 
 // a Parent abstract class
 public abstract  class Person {

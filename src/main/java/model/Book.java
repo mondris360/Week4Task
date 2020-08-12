@@ -1,6 +1,8 @@
 package model;
 
 // helper class method
+import model.abtractclass.Person;
+
 import static util.HelperClass.generateRandomNumber;
 
 // this file contains both the Book and the Author class
@@ -58,7 +60,7 @@ public  class Book {
     }
 
     // an inner class for Author
-    public static class Author extends  Person{
+    public static class Author extends Person {
 
         private String biography;
 

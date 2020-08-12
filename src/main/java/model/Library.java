@@ -30,7 +30,10 @@ public class Library {
     }
 
     // method to add a new book to the library
-    public static  void setBooks(Book newBook) {
+    public static  boolean setBooks(Book newBook) throws Exception{
+        if (newBook == null){
+            throw new IllegalArgumentException("Invalid Input");
+        }
         // check if a book with that same name already exists
         Book findBook = bookAlreadyExists(books, newBook.getName());
         // if book already exist
@@ -42,7 +45,7 @@ public class Library {
             books.put(newBook.getName(), newBook);
             System.out.println("Book Added");
         }
-
+        return true;
     }
 
     // check if the book already exists

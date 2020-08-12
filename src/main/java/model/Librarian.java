@@ -1,33 +1,45 @@
 package model;
 
+import model.abtractclass.Person;
+
 import java.util.*;
 
-public class Librarian extends  Person{
+// inheritance
+public class Librarian extends Person {
     private String phoneNo;
 
     //pending requests
     private static Map<LibraryUser, String> pendingRequests =  new HashMap<>();
 
+    // constructor
     public Librarian(String name, int age, DateOfBirth dateOfBirth, String phoneNo) {
         super(name, age, dateOfBirth);
         this.phoneNo = phoneNo;
     }
 
+
     // method to  add a new book to the library collection of books
-    public boolean addNewBook(String name, Book.Author author, String ISBN, String yearOfPublication, int quantity){
+    public boolean addNewBook(String name, Book.Author author, String ISBN, String yearOfPublication, int quantity) throws Exception{
+
+        if(name == null || author == null || ISBN == null ||yearOfPublication == null || quantity <=0){
+            throw new NullPointerException("You Passed an invalid Argument");
+        }
         // create a new book object
         Book myBook = new Book(name, author, ISBN, yearOfPublication, quantity);
-
         // add the book to the library
-        Library.setBooks(myBook);
-        return  false;
+        boolean addBook =  Library.setBooks(myBook);
+        return  addBook;
     }
 
     // method to accept book requests from library users
     public static boolean acceptUserRequest(String bookName, LibraryUser user){
+        if(bookName == null || user == null ){
+            throw new NullPointerException("You Passed an invalid Argument");
+        }
         pendingRequests.put(user, bookName);
         return true;
     }
+    // method to process all users requests
     public boolean processQueue(boolean givePriority){
        if(givePriority){
            // attend to library users based on their priority
@@ -39,7 +51,7 @@ public class Librarian extends  Person{
         return false;
     }
 
-    // implementation 2 i.e on first come first server basics
+    // implementation 2 i.e on first come first server basis
     private  String implementation2(){
         System.out.println("attending to users based on FIFO");
        Queue<LibraryUser>  currentQueue = Library.getUsersQueue();
@@ -91,7 +103,7 @@ public class Librarian extends  Person{
             // remove  the user request from our pending requests list
             pendingRequests.remove(firstUserOnQueue);
         }
-        return "Requested Treated";
+        return "Request Treated";
     }
 
 

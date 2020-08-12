@@ -1,6 +1,9 @@
 package model;
 
-public class LibraryUser extends  Person implements Comparable<LibraryUser>{
+import model.abtractclass.Person;
+
+// implementing an interface
+public class LibraryUser extends Person implements Comparable<LibraryUser>{
     private String userCategory;
     private Integer rank;
 
@@ -9,11 +12,14 @@ public class LibraryUser extends  Person implements Comparable<LibraryUser>{
         super(name, age, dateOfBirth);
         this.userCategory = userType;
         this.rank =  getUserRank(userType);
-        System.out.println("user Rank " +  rank);
     }
 
     // method to borrow a book from the library
-    public boolean borrowBook(String bookName) {
+    public boolean borrowBook(String bookName) throws Exception {
+        // validate the user input
+        if (bookName == null ||  bookName.isEmpty() || bookName.isBlank() ){
+            throw new IllegalArgumentException("Invalid Book Name");
+        }
         // submit the book request to the librarian
         boolean submitRequest = Librarian.acceptUserRequest(bookName, this);
         if (submitRequest){
@@ -28,13 +34,14 @@ public class LibraryUser extends  Person implements Comparable<LibraryUser>{
     }
 
     // method to return a borrowed Book
-    public boolean returnBook(){
+    public boolean returnBook(String bookName){
+        // will implement latter if there is time
         return false;
     }
 
 
-    // method to getUserRank
-    public  int getUserRank(String userCategory){
+    // method to get UserRank
+    private  int getUserRank(String userCategory){
         userCategory =  userCategory.toLowerCase();
         Integer rank = 0;
         switch (userCategory){
