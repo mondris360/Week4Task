@@ -50,13 +50,15 @@ public class Librarian extends  Person{
        return treatRequests;
     }
 
-    // implementation 1 where users are attended to based on their priority
-    private  void implementation1() {
+    // implementation 1: users are attended to based on their priority
+    private  String implementation1() {
         System.out.println("attending to users based on priority");
             // convert the already existing queue to a priority queue
+        // generic
         Queue myNewQueue =  convertQueueToPriorityQueue();
-        treatRequests(myNewQueue);
+        String treatRequests = treatRequests(myNewQueue);
 
+        return treatRequests;
     }
 
     // method to process all the pending users requests
@@ -85,7 +87,7 @@ public class Librarian extends  Person{
                 System.out.println( "Handing "  + bookName  + " to " + " "  + firstUserOnQueue.getName());
             }
             // remove the user from the queue and attend to the next user on the queue
-            Library.getUsersQueue().poll();
+            currentQueue.poll();
             // remove  the user request from our pending requests list
             pendingRequests.remove(firstUserOnQueue);
         }

@@ -31,8 +31,7 @@ public class Main {
         libraryUser3.borrowBook("book1");
         libraryUser3.borrowBook("book3");
         libraryUser4.borrowBook("Hackinddg++ddddddddcccdd");
-        System.out.println(librarian.processQueue(false));
-
+        System.out.println(librarian.processQueue(true));
 
 //        PriorityQueue<Integer> myQueue =  new PriorityQueue<Integer>();
 ////        List<Integer> array =  new ArrayList<>();

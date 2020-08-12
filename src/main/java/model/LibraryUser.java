@@ -42,10 +42,10 @@ public class LibraryUser extends  Person implements Comparable<LibraryUser>{
                 rank = 5;
                 break;
             case "junior student":
-                rank = 3;
+                rank = 1;
                 break;
             case "senior student":
-                rank = 1;
+                rank = 3;
                 break;
             default:
                 rank = 0;
